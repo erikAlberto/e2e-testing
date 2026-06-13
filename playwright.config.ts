@@ -1,5 +1,9 @@
+import * as path from 'path';
+import * as dotenv from 'dotenv';
 import { defineConfig } from '@playwright/test';
 import { defineBddConfig } from 'playwright-bdd';
+
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 defineBddConfig({
   features: 'features/*.feature',
@@ -42,7 +46,7 @@ export default defineConfig({
     { 
       name: 'sports season tickets management system',
       use: {
-        baseURL: 'http://localhost:3000',
+        baseURL: process.env.BASE_URL?.trim() || 'http://localhost:3000',
       },
     },
   ],

@@ -8,13 +8,13 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.usernameInput = page.locator('input[name="username"]');
-    this.passwordInput = page.locator('input[name="password"]');
+    this.usernameInput = page.locator('#email');
+    this.passwordInput = page.locator('#password');
     this.loginButton = page.locator('button[type="submit"]');
   }
 
   async navegar() {
-    await this.page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    await this.page.goto('/auth/login');
   }
 
   async iniciarSesion(user: string, pass: string) {

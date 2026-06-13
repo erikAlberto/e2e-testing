@@ -33,14 +33,25 @@ When('ingresa credenciales válidas', async () => {
   try {
     AllureUtils.addLabel('feature', 'Autenticación');
     
-    const credenciales = {
-      usuario: 'Admin',
-      contraseña: '***',
-    };
-    AllureUtils.attachJson('Credenciales', credenciales);
-    
-    await loginPage.iniciarSesion('Admin', 'admin123');
-    AllureUtils.attachText('Step Info', 'Credenciales ingresadas correctamente');
+    const isCI = process.env.CI === 'true' || process.env.CI === '1';
+    const envUser = process.env.TEST_USER;
+    const envPass = process.env.TEST_PASSWORD;
+    if (isCI) {
+      if (!envUser || !envPass) {
+        throw new Error('TEST_USER and TEST_PASSWORD must be set in CI environment');
+      }
+    }
+
+    const username = envUser ?? 'Admin';
+    const password = envPass ?? 'admin123';
+      const credenciales = {
+        usuario: username,
+        contraseña: '***',
+      };
+      AllureUtils.attachJson('Credenciales', credenciales);
+
+      await loginPage.iniciarSesion(username, password);
+      AllureUtils.attachText('Step Info', 'Credenciales ingresadas correctamente');
   } catch (error) {
     throw error;
   }
