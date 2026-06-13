@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx bddgen && npx playwright test"
+    "test": "npx bddgen && npx playwright test",
+    "test:debug": "npx bddgen && npx playwright test --debug",
+    "test:headed": "npx bddgen && npx playwright test --headed",
+    "allure:report": "npx allure generate allure-results -o allure-report --clean",
+    "allure:serve": "npx allure serve allure-results",
+    "allure:open": "npx allure open allure-report",
+    "report": "npm run test && npm run allure:report && npm run allure:open"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +20,8 @@
     "@cucumber/cucumber": "^13.0.0",
     "@playwright/test": "^1.60.0",
     "@types/node": "^25.9.3",
+    "allure-commandline": "^2.25.0",
+    "allure-playwright": "^3.10.0",
     "playwright-bdd": "^9.0.0",
     "ts-node": "^10.9.2"
   }

@@ -8,6 +8,11 @@ test-results/
 playwright-report/
 coverage/
 
+# Allure Reports
+allure-results/
+allure-report/
+.allure/
+
 # Environment variables
 .env
 .env.local
