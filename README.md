@@ -29,3 +29,4 @@ CI / GitHub Actions
   - `BASE_URL`
   - `TEST_USER`
   - `TEST_PASSWORD`
+
